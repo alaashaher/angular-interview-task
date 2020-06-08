@@ -125,3 +125,9 @@
   font-size: 18px;
   padding: 10px;
 }
+.emailError {
+  background-color: #ffee03a8;
+  color: white;
+  font-size: 18px;
+  padding: 10px;
+}

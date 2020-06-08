@@ -7,6 +7,9 @@
     <div class="alert" style="display: none;">
       <p>Email or password is incorrect</p>
     </div>
+    <div class="emailError" style="display: none;">
+      <p>fill Email and password correctly</p>
+    </div>
     <form class="items" [formGroup]="Userform" (submit)="onSubmit(Userform.value, $event)">
       <div class="form-group">
         <input type="text" id="form-text" placeholder="email" formControlName="email"  />

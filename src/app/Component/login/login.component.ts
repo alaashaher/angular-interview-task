@@ -32,6 +32,8 @@ export class LoginComponent implements OnInit {
   onSubmit(formValue , event: Event){
     this.submitted = true;
     (document.querySelector('.alert') as HTMLElement).style.display = 'none';
+    (document.querySelector('.emailError') as HTMLElement).style.display = 'none';
+
     if(formValue.email == "") {
       (document.querySelector('.emailerror') as HTMLElement).style.display = 'block';
     }
@@ -69,8 +71,7 @@ export class LoginComponent implements OnInit {
           
           );
      }else{
-     // this.toastr.warning('Please fill out all fields correctly', 'Toastr fun!');
-
+      (document.querySelector('.emailError') as HTMLElement).style.display = 'block';
      }    
   }
 }
