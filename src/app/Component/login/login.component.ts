@@ -5,6 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
 import { AuthenticationService } from '../../Providers/authentication-service'
 import { AlertService } from '../../Providers/Alert-service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
   ) { }
   
   Userform = new FormGroup({
-    email: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]),
     passwords: new FormControl('', Validators.required),
   })
   submitted = false;
@@ -28,9 +29,9 @@ export class LoginComponent implements OnInit {
   passworderror = false;
   ngOnInit() {
   }
-  get f() { return this.Userform.controls; }
   onSubmit(formValue , event: Event){
     this.submitted = true;
+    (document.querySelector('.alert') as HTMLElement).style.display = 'none';
     if(formValue.email == "") {
       (document.querySelector('.emailerror') as HTMLElement).style.display = 'block';
     }
@@ -46,9 +47,9 @@ export class LoginComponent implements OnInit {
     }
     event.preventDefault();
     if (this.Userform.valid) {
+      
       this.authenticationService.userLogin(formValue.email, formValue.passwords).subscribe(
         res => {
-          console.log(res)
 
             if(res.token!=""){
 
@@ -57,12 +58,16 @@ export class LoginComponent implements OnInit {
               this.cookieService.set( 'user_token', token );
 
               this.router.navigate(['/dashboard']).then(() => {
-            });
+              });
             }else{
-
             }
       
-          });
+          },
+          err => {
+            (document.querySelector('.alert') as HTMLElement).style.display = 'block';
+          },
+          
+          );
      }else{
      // this.toastr.warning('Please fill out all fields correctly', 'Toastr fun!');
 
