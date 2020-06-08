@@ -1,1 +1,16 @@
-<p>login works!</p>
+<section id="login" style="background-color: #03254C;">
+  <div class="container">
+    <div class="form-header">
+        <img src="../../../assets/image/Loginicon.png"/>
+    </div>
+    <h2 id="title">Login</h2>
+  
+    <form class="items" [formGroup]="Userform" (submit)="onSubmit(Userform.value, $event)">
+      <input type="text" id="form-text" placeholder="Username" formControlName="email" />
+      <input type="password" id="form-password" placeholder="Password"formControlName="passwords" />
+  
+      <button id="button" type="submit">Login</button>
+      
+    </form>
+  </div>
+</section>
