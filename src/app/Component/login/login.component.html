@@ -1,14 +1,25 @@
-<section id="login" style="background-color: #03254C;">
+<section id="login">
   <div class="container">
     <div class="form-header">
         <img src="../../../assets/image/Loginicon.png"/>
     </div>
     <h2 id="title">Login</h2>
-  
+    <!-- <div class="alert" style="display: none;">
+      <h3>Username or password is incorrect</h3>
+    </div> -->
     <form class="items" [formGroup]="Userform" (submit)="onSubmit(Userform.value, $event)">
-      <input type="text" id="form-text" placeholder="Username" formControlName="email" />
-      <input type="password" id="form-password" placeholder="Password"formControlName="passwords" />
-  
+      <div class="form-group">
+        <input type="text" id="form-text" placeholder="email" formControlName="email"  />
+        <div  class="invalid-feedback emailerror" style="display: none;">
+          <div >* Username is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="password" id="form-password" placeholder="Password" formControlName="passwords"  />
+        <div  class="invalid-feedback passworderror" style="display: none;">
+          <div>* Password is required</div>
+        </div>
+      </div>
       <button id="button" type="submit">Login</button>
       
     </form>

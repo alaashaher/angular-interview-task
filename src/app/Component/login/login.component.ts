@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
 import { AuthenticationService } from '../../Providers/authentication-service'
+import { AlertService } from '../../Providers/Alert-service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,54 +15,57 @@ export class LoginComponent implements OnInit {
     private cookieService: CookieService  ,
     public toastr: ToastrService,
     private authenticationService: AuthenticationService,
-    private router:Router
+    private router:Router,
+    private alertService: AlertService
   ) { }
   
   Userform = new FormGroup({
     email: new FormControl('', Validators.required),
     passwords: new FormControl('', Validators.required),
   })
+  submitted = false;
+  emailerror = false;
+  passworderror = false;
   ngOnInit() {
   }
+  get f() { return this.Userform.controls; }
   onSubmit(formValue , event: Event){
-    
+    this.submitted = true;
+    if(formValue.email == "") {
+      (document.querySelector('.emailerror') as HTMLElement).style.display = 'block';
+    }
+    else {
+      (document.querySelector('.emailerror') as HTMLElement).style.display = 'none';
+    }
+    if(formValue.passwords == "") {
+      (document.querySelector('.passworderror') as HTMLElement).style.display = 'block';
+
+    }
+    else {
+      (document.querySelector('.passworderror') as HTMLElement).style.display = 'none';
+    }
     event.preventDefault();
     if (this.Userform.valid) {
       this.authenticationService.userLogin(formValue.email, formValue.passwords).subscribe(
         res => {
           console.log(res)
-            //let error:number= res["error"];
 
             if(res.token!=""){
 
-              //let result: any[] = res["data"];
               let token: any = res.token;
-              //let user_token: any = result["user_token"];
 
-              
-
-              //this.cookieService.set( 'first_name', first_name );
               this.cookieService.set( 'user_token', token );
-
-              
-             // this.toastr.success(' Welcome ',' ');
-             // this.toastr.success('Hello world!', 'Toastr fun!');
-
 
               this.router.navigate(['/dashboard']).then(() => {
             });
             }else{
-              this.toastr.error(' ', 'Username or password is incorrect');
+
             }
       
           });
      }else{
-      this.toastr.warning('Please fill out all fields correctly', 'Toastr fun!');
+     // this.toastr.warning('Please fill out all fields correctly', 'Toastr fun!');
 
-     }
-    
-     
-
-    
+     }    
   }
 }

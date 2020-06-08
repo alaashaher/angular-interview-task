@@ -8,6 +8,7 @@ import { DashboardComponent } from './Component/dashboard/dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthenticationService } from '../app/Providers/authentication-service'
+import { DashboardService } from '../app/Providers/dashboard-service'
 import { CookieService } from 'ngx-cookie-service';
 import { AuthGuard } from './Shared/auth/auth-guard.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -28,6 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
   providers: [
     { provide: ToastrService },
     AuthenticationService,
+    DashboardService,
     CookieService,
     AuthGuard,
     

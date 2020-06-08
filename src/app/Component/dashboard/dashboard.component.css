@@ -1,0 +1,78 @@
+header {
+    background-color: #413294;
+}
+#logout {
+    float: right;
+    margin: 16px;
+    background-color: #fff;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 5px;
+    color: #5914a5;
+}
+
+#avater-img {
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    margin: 10px;
+}
+section {
+    padding: 5% 10%;
+}
+.scene{
+    /* width: 200px; */
+    height: 260px;
+    border: 1px solid grey;
+    margin: 40px 0;
+    perspective: 600px;
+    padding: 5px;
+  }
+  
+  .card{
+    width:100%;
+    height:100%;
+    transform-style: preserve-3d; 
+    position: relative;
+    transition: transform 2s;
+    cursor: pointer;
+  }
+  
+  .card-face{
+    width:100%;
+    height:100%;
+    position: absolute;
+    font-size: 3rem;
+    color: #fff;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+  }
+  
+  .card-face--front{
+    background: rgb(63,94,251);
+    background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+  }
+  
+  .card-face--back{
+      background: rgb(63,94,251);
+      background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgb(0, 66, 254) 80%);
+    transform: rotateY(180deg);
+  }
+  
+  .card:hover{
+    transform: rotateY(180deg);
+  }
+
+  .card-img {
+    width: 100%;
+    height: 100%;
+  }
+  td {
+    font-size: 18px;
+  }
+
+  .email {
+      color: #fff;
+      text-decoration: none;
+  }
